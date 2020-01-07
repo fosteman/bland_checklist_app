@@ -37,6 +37,12 @@ class ChecklistViewController: UITableViewController {
         }
         t.deselectRow(at: i, animated: true)
     }
+    
+    override func tableView(_ t: UITableView, commit editionStyle: UITableViewCell.EditingStyle, forRowAt i: IndexPath) {
+        items.remove(at: i.row)
+        let indexPaths = [i]
+        tableView.deleteRows(at: indexPaths, with: .automatic)
+    }
    
     func configureCheckmark(for c: UITableViewCell, with item: ChecklistItem) {
         if item.checked {
