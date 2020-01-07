@@ -89,5 +89,12 @@ class AddItemTableViewController: UITableViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    // MARK:- Actions
+    
+    @IBAction func done(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
+        navigationController?.popViewController(animated: true)
+    }
 }

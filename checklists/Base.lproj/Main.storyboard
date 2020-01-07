@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="-144.375" y="22.183098591549296"/>
         </scene>
-        <!--Title-->
+        <!--Add new item-->
         <scene sceneID="x5j-re-QRf">
             <objects>
-                <tableViewController id="q8h-ot-QNu" customClass="AddItemTableViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Add new item" id="q8h-ot-QNu" customClass="AddItemTableViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="3p3-mm-lNS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,9 +97,17 @@
                             <outlet property="delegate" destination="q8h-ot-QNu" id="qap-l1-kz6"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Title" id="tZh-1C-3kW">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zyF-wX-zw3"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bZK-hA-WA3"/>
+                    <navigationItem key="navigationItem" title="Add new item" id="tZh-1C-3kW">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="zyF-wX-zw3">
+                            <connections>
+                                <action selector="cancel:" destination="q8h-ot-QNu" id="XL5-U7-cgh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bZK-hA-WA3">
+                            <connections>
+                                <action selector="done:" destination="q8h-ot-QNu" id="HXm-Mi-5kb"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pbj-yC-9Gj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
