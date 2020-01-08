@@ -74,10 +74,10 @@
             </objects>
             <point key="canvasLocation" x="-144.375" y="22.183098591549296"/>
         </scene>
-        <!--Add new item-->
+        <!--Add item VC-->
         <scene sceneID="x5j-re-QRf">
             <objects>
-                <tableViewController title="Add new item" id="q8h-ot-QNu" customClass="AddItemTableViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Add new item" id="q8h-ot-QNu" userLabel="Add item VC" customClass="AddItemTableViewController" customModule="Checklists" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="CAr-XJ-2xg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -92,12 +92,13 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the Item" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-1G-M2z">
+                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name of the Item" textAlignment="natural" adjustsFontSizeToFit="NO" minimumFontSize="17" clearButtonMode="always" translatesAutoresizingMaskIntoConstraints="NO" id="oI4-1G-M2z">
                                                     <rect key="frame" x="8" y="7" width="304" height="31"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
                                                     <connections>
                                                         <action selector="done" destination="q8h-ot-QNu" eventType="editingDidEndOnExit" id="OcR-d6-Ogg"/>
+                                                        <outlet property="delegate" destination="q8h-ot-QNu" id="mvG-Tn-drP"/>
                                                     </connections>
                                                 </textField>
                                             </subviews>
@@ -175,13 +176,14 @@
                                 <action selector="cancel:" destination="q8h-ot-QNu" id="XL5-U7-cgh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="bZK-hA-WA3">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="bZK-hA-WA3">
                             <connections>
-                                <action selector="done" destination="q8h-ot-QNu" id="U2t-dh-7aU"/>
+                                <action selector="doneBarButton:" destination="q8h-ot-QNu" id="dxe-1g-ume"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneBarButton" destination="bZK-hA-WA3" id="fAP-cR-WlA"/>
                         <outlet property="itemName" destination="oI4-1G-M2z" id="1JP-je-EJ0"/>
                     </connections>
                 </tableViewController>
