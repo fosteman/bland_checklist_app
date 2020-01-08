@@ -8,10 +8,17 @@
 
 import UIKit
 
+protocol AddItemTableViewControllerDelegate: class {
+    func addItemDidCancel(_ controller: AddItemTableViewController)
+    func addItem(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+}
+
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var itemName: UITextField!
+    weak var delegate: AddItemTableViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -52,49 +59,16 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+    
     // MARK:- Actions
     
     @IBAction func done() {
-        navigationController?.popViewController(animated: true)
+        let item = ChecklistItem()
+        item.text = itemName.text!
+        delegate?.addItem(self, didFinishAdding: item)
     }
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        navigationController?.popViewController(animated: true)
+        delegate?.addItemDidCancel(self)
     }
     
     //MARK: - Delegates
@@ -103,12 +77,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         let stringRange = Range(range, in: oldText)!
         let newText = oldText.replacingCharacters(in: stringRange, with: string)
         
-        if newText.isEmpty {
-            doneBarButton.isEnabled = false
-        }
-        else {
-            doneBarButton.isEnabled = true
-        }
+        doneBarButton.isEnabled = !newText.isEmpty
         return true
         
     }

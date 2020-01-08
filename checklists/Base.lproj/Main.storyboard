@@ -47,7 +47,7 @@
                     <navigationItem key="navigationItem" title="Checklists" id="Byz-ZF-0mC">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="xUt-s0-yFc">
                             <connections>
-                                <segue destination="q8h-ot-QNu" kind="show" id="SGb-nR-42P"/>
+                                <segue destination="q8h-ot-QNu" kind="show" identifier="Add Item Segue" id="SGb-nR-42P"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -178,7 +178,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="done" id="bZK-hA-WA3">
                             <connections>
-                                <action selector="doneBarButton:" destination="q8h-ot-QNu" id="dxe-1g-ume"/>
+                                <action selector="done" destination="q8h-ot-QNu" id="kx5-kG-dOT"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
