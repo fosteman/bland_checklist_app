@@ -9,14 +9,14 @@
 import UIKit
 
 class ChecklistViewController: UITableViewController, itemDetailTableViewControllerDelegate {
-
+    var checklist: Checklist!
     var items = [ChecklistItem]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        print("Documents folder is: \(documentsDirectory()) \(dataFilePath())")
+        navigationItem.largeTitleDisplayMode = .never
+        navigationItem.title = checklist.name
+        loadChecklistItems()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
