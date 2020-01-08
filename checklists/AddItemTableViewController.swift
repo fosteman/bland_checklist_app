@@ -10,6 +10,7 @@ import UIKit
 
 class AddItemTableViewController: UITableViewController {
 
+    @IBOutlet weak var itemName: UITextField!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,19 +23,14 @@ class AddItemTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
-
+    //MARK: - Table view polishing
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        itemName.becomeFirstResponder()
+    }
+    
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
-    }
-
+    
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
@@ -52,7 +48,9 @@ class AddItemTableViewController: UITableViewController {
         return true
     }
     */
-
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil
+    }
     /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -91,7 +89,7 @@ class AddItemTableViewController: UITableViewController {
     */
     // MARK:- Actions
     
-    @IBAction func done(_ sender: UIBarButtonItem) {
+    @IBAction func done() {
         navigationController?.popViewController(animated: true)
     }
     @IBAction func cancel(_ sender: UIBarButtonItem) {
