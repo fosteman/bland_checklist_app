@@ -1,5 +1,5 @@
 //
-//  AddItemTableViewController.swift
+//  itemDetailTableViewController.swift
 //  checklists
 //
 //  Created by Tim Fosteman on 2020-01-07.
@@ -8,16 +8,17 @@
 
 import UIKit
 
-protocol AddItemTableViewControllerDelegate: class {
-    func addItemDidCancel(_ controller: AddItemTableViewController)
-    func addItem(_ controller: AddItemTableViewController, didFinishAdding item: ChecklistItem)
+protocol itemDetailTableViewControllerDelegate: class {
+    func addItemDidCancel(_ controller: ItemDetailViewController)
+    func addItem(_ controller: ItemDetailViewController, didFinishAdding item: ChecklistItem)
+    func addItem(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem)
 }
 
-class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
+class ItemDetailViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
     @IBOutlet weak var itemDescription: UITextField!
-    weak var delegate: AddItemTableViewControllerDelegate?
+    weak var delegate: itemDetailTableViewControllerDelegate?
     var itemToEdit: ChecklistItem?
     
     
@@ -27,6 +28,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
         if let item = itemToEdit {
             navigationItem.title = "Edit Item"
             itemDescription.text = item.text
+            doneBarButton.isEnabled = true
         }
         
     }
@@ -45,9 +47,14 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     // MARK:- Actions
     
     @IBAction func done() {
-        let item = ChecklistItem()
-        item.text = itemDescription.text!
-        delegate?.addItem(self, didFinishAdding: item)
+        if let item = itemToEdit {
+            item.text = itemDescription.text!
+            delegate?.addItem(self, didFinishEditing: item)
+        } else {
+            let item = ChecklistItem()
+            item.text = itemDescription.text!
+            delegate?.addItem(self, didFinishAdding: item)
+        }
     }
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         delegate?.addItemDidCancel(self)
