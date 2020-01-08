@@ -16,46 +16,28 @@ protocol AddItemTableViewControllerDelegate: class {
 class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
 
     @IBOutlet weak var doneBarButton: UIBarButtonItem!
-    @IBOutlet weak var itemName: UITextField!
+    @IBOutlet weak var itemDescription: UITextField!
     weak var delegate: AddItemTableViewControllerDelegate?
+    var itemToEdit: ChecklistItem?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //disable large title
         navigationItem.largeTitleDisplayMode = .never
+        if let item = itemToEdit {
+            navigationItem.title = "Edit Item"
+            itemDescription.text = item.text
+        }
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     //MARK: - Table view polishing
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        itemName.becomeFirstResponder()
+        itemDescription.becomeFirstResponder()
     }
     
     // MARK: - Table view data source
-    
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
-
-        return cell
-    }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    */
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
     }
@@ -64,7 +46,7 @@ class AddItemTableViewController: UITableViewController, UITextFieldDelegate {
     
     @IBAction func done() {
         let item = ChecklistItem()
-        item.text = itemName.text!
+        item.text = itemDescription.text!
         delegate?.addItem(self, didFinishAdding: item)
     }
     @IBAction func cancel(_ sender: UIBarButtonItem) {

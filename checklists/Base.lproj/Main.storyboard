@@ -16,27 +16,43 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="ChecklistItem" id="aEB-nx-LOf">
-                                <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="detailDisclosureButton" indentationWidth="10" reuseIdentifier="ChecklistItem" id="aEB-nx-LOf">
+                                <rect key="frame" x="0.0" y="28" width="320" height="31.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aEB-nx-LOf" id="Ypv-ld-5x9">
-                                    <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="261" height="31.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIz-Gl-XxV">
-                                            <rect key="frame" x="16" y="11.5" width="256" height="21.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="✔" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T2B-PH-wwW">
+                                            <rect key="frame" x="5" y="5" width="25" height="21.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KQ1-gI-pG5">
+                                            <rect key="frame" x="38" y="5" width="223" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottomMargin" secondItem="TIz-Gl-XxV" secondAttribute="bottom" id="XdV-zF-EpK"/>
-                                        <constraint firstItem="TIz-Gl-XxV" firstAttribute="leading" secondItem="Ypv-ld-5x9" secondAttribute="leadingMargin" id="h85-lI-VnX"/>
-                                        <constraint firstItem="TIz-Gl-XxV" firstAttribute="trailing" secondItem="Ypv-ld-5x9" secondAttribute="trailingMargin" id="ikl-SZ-j70"/>
-                                        <constraint firstItem="TIz-Gl-XxV" firstAttribute="top" secondItem="Ypv-ld-5x9" secondAttribute="topMargin" constant="0.5" id="zbn-W0-pOs"/>
+                                        <constraint firstItem="T2B-PH-wwW" firstAttribute="centerX" secondItem="Ypv-ld-5x9" secondAttribute="centerX" constant="-113" id="5hP-Q5-dmS"/>
+                                        <constraint firstAttribute="bottom" secondItem="KQ1-gI-pG5" secondAttribute="bottom" constant="5" id="6Yt-pL-LYP"/>
+                                        <constraint firstAttribute="bottom" secondItem="T2B-PH-wwW" secondAttribute="bottom" constant="5" id="7HI-D7-FyL"/>
+                                        <constraint firstItem="KQ1-gI-pG5" firstAttribute="leading" secondItem="T2B-PH-wwW" secondAttribute="trailing" constant="8" id="Ij2-0S-OC4"/>
+                                        <constraint firstItem="KQ1-gI-pG5" firstAttribute="top" secondItem="Ypv-ld-5x9" secondAttribute="top" constant="5" id="YXM-3a-T8W"/>
+                                        <constraint firstItem="T2B-PH-wwW" firstAttribute="leading" secondItem="Ypv-ld-5x9" secondAttribute="leading" constant="5" id="hNf-Us-WMb"/>
+                                        <constraint firstItem="T2B-PH-wwW" firstAttribute="top" secondItem="Ypv-ld-5x9" secondAttribute="top" constant="5" id="rfE-rQ-ALp"/>
+                                        <constraint firstAttribute="trailing" secondItem="KQ1-gI-pG5" secondAttribute="trailing" id="uXt-sI-Zjk"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="T2B-PH-wwW" secondAttribute="trailing" constant="290" id="Iks-Gc-rcP"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="q8h-ot-QNu" kind="show" identifier="Edit Item Segue" trigger="accessoryAction" id="zoN-4b-53g"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -184,7 +200,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="doneBarButton" destination="bZK-hA-WA3" id="fAP-cR-WlA"/>
-                        <outlet property="itemName" destination="oI4-1G-M2z" id="1JP-je-EJ0"/>
+                        <outlet property="itemDescription" destination="oI4-1G-M2z" id="1JP-je-EJ0"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Pbj-yC-9Gj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -192,4 +208,7 @@
             <point key="canvasLocation" x="1893.75" y="21.12676056338028"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="zoN-4b-53g"/>
+    </inferredMetricsTieBreakers>
 </document>
