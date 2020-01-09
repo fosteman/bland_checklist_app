@@ -10,8 +10,22 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    var window: UIWindow?
+    
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        saveData()
+    }
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        saveData()
+    }
+    
+    func saveData() {
+        let navigationController = window!.rootViewController as! UINavigationController
+        let controller = navigationController.viewControllers[0] as! AllListsViewController
+        
+        controller.saveChecklists()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
