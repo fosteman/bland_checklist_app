@@ -9,17 +9,20 @@
 import UIKit
 
 class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { //Any는 모든 유형의 객체가 될 수 있다. 캐스팅 해서 사용
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Show Checklist" {
-            let controller = segue.destination as! ChecklistViewController //세그의 목적 뷰 컨트롤러를 캐스팅
-            controller.checklist = sender as? Checklist //sender로 넘어온 객체를 캐스팅
-        } else if segue.identifier == "Add Checklist" {
+            let controller = segue.destination as! ChecklistViewController
+            controller.checklist = sender as? Checklist
+        }
+        else if segue.identifier == "Add Checklist" {
             let controller = segue.destination as! ListDetailViewController
             controller.delegate = self
-        } else if segue.identifier == "Edit Checklist" {
+        }
+        else if segue.identifier == "Edit Checklist" {
             let controller = segue.destination as! ListDetailViewController
             controller.delegate = self
-            controller.checklistToEdit = sender as! Checklist
+            controller.checklistToEdit = (sender as! Checklist)
         }
     }
     
@@ -58,6 +61,15 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         lists.append(list)
         list = Checklist(name: "2")
         lists.append(list)
+        
+        for list in lists {
+            let item = ChecklistItem()
+            item.text = "Item for \(list.name)"
+            list.items.append(item)
+        }
+        
+        loadChecklists()
+        
     }
 
     // MARK: - Table view data source
@@ -97,6 +109,39 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         navigationController?.pushViewController(controller, animated: true)
     }
     
+    // MARK: - Data Persistence
+    func documentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    
+    func dataFilePath() -> URL {
+        return documentsDirectory().appendingPathComponent("Checklists.plist")
+    }
+    
+    func saveChecklists() {
+        let encoder = PropertyListEncoder()
+        do {
+            let data = try encoder.encode(lists)
+            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
+        }
+        catch {
+            print("Error encoding: \(error.localizedDescription)")
+        }
+    }
+    
+    func loadChecklists() {
+        let path = dataFilePath()
+        if let data = try? Data(contentsOf: path) {
+            let decoder = PropertyListDecoder()
+            do {
+                lists = try decoder.decode([Checklist].self, from: data)
+            }
+            catch {
+                print("Error decoding: \(error.localizedDescription)")
+            }
+        }
+    }
     
     
 

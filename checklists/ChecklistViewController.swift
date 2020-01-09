@@ -16,7 +16,8 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
         super.viewDidLoad()
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = checklist.name
-        loadChecklistItems()
+        
+        items = checklist.items
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -43,7 +44,6 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
         items.append(item)
         let indexPath = IndexPath(row: newRowIndex, section: 0)
         tableView.insertRows(at: [indexPath], with: .automatic)
-        saveChecklistItems()
         navigationController?.popViewController(animated: true)
     }
     func EditItem(_ controller: ItemDetailViewController, didFinishEditing item: ChecklistItem) {
@@ -53,14 +53,12 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
                 configureText(for: cell, with: item)
             }
         }
-        saveChecklistItems()
         navigationController?.popViewController(animated: true)
     }
     override func tableView(_ t: UITableView, commit editionStyle: UITableViewCell.EditingStyle, forRowAt i: IndexPath) {
         items.remove(at: i.row)
         let indexPaths = [i]
         tableView.deleteRows(at: indexPaths, with: .automatic)
-        saveChecklistItems()
     }
     override func tableView(_ t: UITableView, didSelectRowAt i: IndexPath) {
         if let cell = t.cellForRow(at: i) {
@@ -69,7 +67,6 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
             configureCheckmark(for: cell, with: item)
         }
         t.deselectRow(at: i, animated: true)
-        saveChecklistItems()
     }
     
     // MARK: - Configure Rows
@@ -99,40 +96,6 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
         let label = c.viewWithTag(4) as! UILabel
         
         label.text = item.text
-    }
-    
-    // MARK: - Data Persistence
-    func documentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func dataFilePath() -> URL {
-        return documentsDirectory().appendingPathComponent("Checklists.plist")
-    }
-    
-    func saveChecklistItems() {
-        let encoder = PropertyListEncoder()
-        do {
-            let data = try encoder.encode(items)
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
-        }
-        catch {
-            print("Error encoding: \(error.localizedDescription)")
-        }
-    }
-    
-    func loadChecklistItems() {
-        let path = dataFilePath()
-        if let data = try? Data(contentsOf: path) {
-            let decoder = PropertyListDecoder()
-            do {
-                items = try decoder.decode([ChecklistItem].self, from: data)
-            }
-            catch {
-                print("Error decoding: \(error.localizedDescription)")
-            }
-        }
     }
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B81EB69C23C6B12D002758FC /* data management.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B81EB69B23C6B12D002758FC /* data management.rtf */; };
 		B8B11F3023C4B5DE00B62A50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B11F2F23C4B5DE00B62A50 /* AppDelegate.swift */; };
 		B8B11F3223C4B5DE00B62A50 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B11F3123C4B5DE00B62A50 /* SceneDelegate.swift */; };
 		B8B11F3423C4B5DE00B62A50 /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B11F3323C4B5DE00B62A50 /* ChecklistViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B81EB69B23C6B12D002758FC /* data management.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "data management.rtf"; sourceTree = "<group>"; };
 		B8B11F2C23C4B5DE00B62A50 /* Checklists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Checklists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B11F2F23C4B5DE00B62A50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8B11F3123C4B5DE00B62A50 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				B8B11F4723C65D8400B62A50 /* AllListsViewController.swift */,
 				B8B11F4923C6631700B62A50 /* Checklist.swift */,
 				B8B11F4B23C668A000B62A50 /* ListDetailViewController.swift */,
+				B81EB69B23C6B12D002758FC /* data management.rtf */,
 			);
 			path = checklists;
 			sourceTree = "<group>";
@@ -140,6 +143,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B81EB69C23C6B12D002758FC /* data management.rtf in Resources */,
 				B8B11F3C23C4B5E100B62A50 /* LaunchScreen.storyboard in Resources */,
 				B8B11F3923C4B5E100B62A50 /* Assets.xcassets in Resources */,
 				B8B11F3723C4B5DE00B62A50 /* Main.storyboard in Resources */,
