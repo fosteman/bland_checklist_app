@@ -16,4 +16,11 @@ class Checklist: NSObject, Codable {
         self.name = name
         super.init()
     }
+    func countUncheckedItems() -> Int {
+        var count: Int = 0
+        for item in items where !item.checked {
+            count += 1
+        }
+        return count
+    }
 }

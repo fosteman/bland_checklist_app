@@ -17,7 +17,7 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
         navigationItem.largeTitleDisplayMode = .never
         navigationItem.title = checklist.name
         
-        items = checklist.items
+        items = checklist!.items
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,8 +74,15 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {return items.count}
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let count = checklist.countUncheckedItems()
         let cell = tableView.dequeueReusableCell(withIdentifier: "ChecklistItem", for: indexPath)
         let item = items[indexPath.row]
+        if checklist.countUncheckedItems() == 0 {
+            cell.detailTextLabel!.text = "No Items"
+        }
+        else {
+            cell.detailTextLabel!.text = count == 0 ? "All Done!" : "\(count) Remaining"
+        }
         configureCheckmark(for: cell, with: item)
         configureText(for: cell, with: item)
         
