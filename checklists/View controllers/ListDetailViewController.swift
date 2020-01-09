@@ -39,13 +39,13 @@ class ListDetailViewController: UITableViewController, UITextFieldDelegate {
     
     
     @IBAction func cancel(_ sender: Any) {
-        delegate?.listDetailViewControllerCancel(self)
+       delegate?.listDetailViewControllerCancel(self)
     }
     
     @IBAction func done(_ sender: Any) {
         if let checklist = checklistToEdit {
             checklist.name = textField.text!
-            delegate?.listDetailViewController(self, didFinishEditing: checklist)
+        delegate?.listDetailViewController(self, didFinishEditing: checklist)
         }
         else {
             let checklist = Checklist(name: textField.text!)

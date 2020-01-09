@@ -24,7 +24,8 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
         if segue.identifier == "Add Item Segue" {
             let controller = segue.destination as! ItemDetailViewController
             controller.delegate = self
-        } else if segue.identifier == "Edit Item Segue" {
+        }
+        else if segue.identifier == "Edit Item Segue" {
             let controller = segue.destination as! ItemDetailViewController
             controller.delegate = self
             
@@ -92,7 +93,6 @@ class ChecklistViewController: UITableViewController, itemDetailTableViewControl
     }
     
     func configureText(for c: UITableViewCell, with item: ChecklistItem) {
-        
         let label = c.viewWithTag(4) as! UILabel
         
         label.text = item.text

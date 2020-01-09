@@ -8,7 +8,10 @@
 
 import UIKit
 
-class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate {
+class AllListsViewController: UITableViewController, ListDetailViewControllerDelegate, UINavigationControllerDelegate {
+    
+    var dataModel: DataModel!
+    var lists = [Checklist]()
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "Show Checklist" {
@@ -26,6 +29,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         }
     }
     
+    //MARK: - Implemented Actions
     func listDetailViewControllerCancel(_ controller: ListDetailViewController) {
         navigationController?.popViewController(animated: true)
     }
@@ -49,27 +53,13 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         navigationController?.popViewController(animated: true)
     }
     
-    var lists = Array<Checklist>()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "ChecklistCell")
         
-        var list = Checklist(name: "1")
-        lists.append(list)
-        list = Checklist(name: "2")
-        lists.append(list)
-        
-        for list in lists {
-            let item = ChecklistItem()
-            item.text = "Item for \(list.name)"
-            list.items.append(item)
-        }
-        
-        loadChecklists()
-        
+        lists = dataModel?.lists ?? [Checklist]()
     }
 
     // MARK: - Table view data source
@@ -97,6 +87,7 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let checklist = lists[indexPath.row]
+        UserDefaults.standard.set(indexPath.row, forKey: "ChecklistIndex")
         
         performSegue(withIdentifier: "Show Checklist", sender: checklist)
     }
@@ -109,40 +100,20 @@ class AllListsViewController: UITableViewController, ListDetailViewControllerDel
         navigationController?.pushViewController(controller, animated: true)
     }
     
-    // MARK: - Data Persistence
-    func documentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
-    func dataFilePath() -> URL {
-        return documentsDirectory().appendingPathComponent("Checklists.plist")
-    }
-    
-    func saveChecklists() {
-        let encoder = PropertyListEncoder()
-        do {
-            let data = try encoder.encode(lists)
-            try data.write(to: dataFilePath(), options: Data.WritingOptions.atomic)
-        }
-        catch {
-            print("Error encoding: \(error.localizedDescription)")
+    func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
+        if viewController === self {
+            UserDefaults.standard.set(-1, forKey: "ChecklistIndex")
         }
     }
     
-    func loadChecklists() {
-        let path = dataFilePath()
-        if let data = try? Data(contentsOf: path) {
-            let decoder = PropertyListDecoder()
-            do {
-                lists = try decoder.decode([Checklist].self, from: data)
-            }
-            catch {
-                print("Error decoding: \(error.localizedDescription)")
-            }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        navigationController?.delegate = self
+        let index = UserDefaults.standard.integer(forKey: "ChecklistIndex")
+        if index != -1 {
+            let checklist = dataModel?.lists[index]
+            performSegue(withIdentifier: "Show Checklist", sender: checklist)
+        
         }
     }
-    
-    
-
 }

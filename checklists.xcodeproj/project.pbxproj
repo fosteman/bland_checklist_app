@@ -19,6 +19,7 @@
 		B8B11F4823C65D8400B62A50 /* AllListsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B11F4723C65D8400B62A50 /* AllListsViewController.swift */; };
 		B8B11F4A23C6631700B62A50 /* Checklist.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B11F4923C6631700B62A50 /* Checklist.swift */; };
 		B8B11F4C23C668A000B62A50 /* ListDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B11F4B23C668A000B62A50 /* ListDetailViewController.swift */; };
+		B8EE51E123C7813A00EEDBB0 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EE51E023C7813A00EEDBB0 /* DataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		B8B11F4723C65D8400B62A50 /* AllListsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllListsViewController.swift; sourceTree = "<group>"; };
 		B8B11F4923C6631700B62A50 /* Checklist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Checklist.swift; sourceTree = "<group>"; };
 		B8B11F4B23C668A000B62A50 /* ListDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDetailViewController.swift; sourceTree = "<group>"; };
+		B8EE51E023C7813A00EEDBB0 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,21 +70,46 @@
 		B8B11F2E23C4B5DE00B62A50 /* checklists */ = {
 			isa = PBXGroup;
 			children = (
+				B8EE51E423C7D22400EEDBB0 /* Resources */,
+				B8EE51E323C7D21500EEDBB0 /* View controllers */,
+				B8EE51E223C7D1F700EEDBB0 /* Data Models */,
 				B8B11F2F23C4B5DE00B62A50 /* AppDelegate.swift */,
-				B8B11F3123C4B5DE00B62A50 /* SceneDelegate.swift */,
-				B8B11F3323C4B5DE00B62A50 /* ChecklistViewController.swift */,
-				B8B11F3523C4B5DE00B62A50 /* Main.storyboard */,
-				B8B11F3823C4B5E100B62A50 /* Assets.xcassets */,
-				B8B11F3A23C4B5E100B62A50 /* LaunchScreen.storyboard */,
 				B8B11F3D23C4B5E100B62A50 /* Info.plist */,
-				B8B11F4323C4D43200B62A50 /* ChecklistItem.swift */,
-				B8B11F4523C5320600B62A50 /* ItemDetailViewController.swift */,
-				B8B11F4723C65D8400B62A50 /* AllListsViewController.swift */,
-				B8B11F4923C6631700B62A50 /* Checklist.swift */,
-				B8B11F4B23C668A000B62A50 /* ListDetailViewController.swift */,
-				B81EB69B23C6B12D002758FC /* data management.rtf */,
 			);
 			path = checklists;
+			sourceTree = "<group>";
+		};
+		B8EE51E223C7D1F700EEDBB0 /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				B8B11F4323C4D43200B62A50 /* ChecklistItem.swift */,
+				B8B11F4923C6631700B62A50 /* Checklist.swift */,
+				B8EE51E023C7813A00EEDBB0 /* DataModel.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
+		B8EE51E323C7D21500EEDBB0 /* View controllers */ = {
+			isa = PBXGroup;
+			children = (
+				B8B11F4723C65D8400B62A50 /* AllListsViewController.swift */,
+				B8B11F3323C4B5DE00B62A50 /* ChecklistViewController.swift */,
+				B8B11F4523C5320600B62A50 /* ItemDetailViewController.swift */,
+				B8B11F4B23C668A000B62A50 /* ListDetailViewController.swift */,
+			);
+			path = "View controllers";
+			sourceTree = "<group>";
+		};
+		B8EE51E423C7D22400EEDBB0 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B8B11F3823C4B5E100B62A50 /* Assets.xcassets */,
+				B81EB69B23C6B12D002758FC /* data management.rtf */,
+				B8B11F3A23C4B5E100B62A50 /* LaunchScreen.storyboard */,
+				B8B11F3523C4B5DE00B62A50 /* Main.storyboard */,
+				B8B11F3123C4B5DE00B62A50 /* SceneDelegate.swift */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -165,6 +192,7 @@
 				B8B11F4423C4D43200B62A50 /* ChecklistItem.swift in Sources */,
 				B8B11F4A23C6631700B62A50 /* Checklist.swift in Sources */,
 				B8B11F4C23C668A000B62A50 /* ListDetailViewController.swift in Sources */,
+				B8EE51E123C7813A00EEDBB0 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
